@@ -1,0 +1,10 @@
+.accordion {
+  width: 75%;
+  margin: 20px auto 0px;
+}
+
+@media screen and (max-width: 900px) {
+  .accordion {
+    width: 90%;
+  }
+}
