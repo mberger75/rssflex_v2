@@ -1,4 +1,4 @@
-export const feeds = {
+const feeds = {
   dev: {
     feedLinks: {
       codeur: 'https://www.codeur.com/blog/feed/',
@@ -37,4 +37,8 @@ export const feeds = {
       tomshardware: 'https://www.tomshardware.com/feeds/all',
     },
   },
+};
+
+module.exports = {
+  feeds,
 };

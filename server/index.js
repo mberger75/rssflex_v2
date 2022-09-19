@@ -1,8 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import Parser from 'rss-parser';
+const express = require('express');
+const cors = require('cors');
+const Parser = require('rss-parser');
 
-import { feeds } from './data.js';
+const { feeds } = require('./data.js');
 
 const app = express();
 const port = process.env.port || 5000;
