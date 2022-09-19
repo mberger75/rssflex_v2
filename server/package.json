@@ -1,0 +1,21 @@
+{
+  "name": "rss_flex_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "rss"
+  ],
+  "author": "marc berger",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "rss-parser": "^3.12.0"
+  }
+}

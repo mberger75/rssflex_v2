@@ -1,0 +1,52 @@
+.article {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.content {
+  padding: 10px 10px 0px 10px;
+}
+
+.content:hover {
+  background-color: rgba(68, 236, 255, 0.3);
+}
+.content-main {
+  color: #000;
+  text-decoration: none;
+}
+.article-seen {
+  opacity: 0.5;
+}
+.article-seen::before {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  content: '✔️';
+}
+.content-main > hr {
+  padding: 0;
+  margin: 0;
+  height: 0.7px;
+  border-color: rgba(99, 99, 99, 0.1);
+}
+.title {
+  font-size: 19px;
+  font-weight: bold;
+  color: hotpink;
+}
+.categorie {
+  font-style: italic;
+  font-size: 13px;
+}
+.date {
+  font-size: 13px;
+}
+.thumbnail {
+  float: left;
+  width: 80px;
+  height: 60px;
+  margin: 25px 10px 0px 0px;
+}
+.description {
+  font-size: 15px;
+}
