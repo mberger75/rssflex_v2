@@ -17,7 +17,7 @@ function FeedAccordion({ feedCategory, feedName }) {
   const [isAlreadyFetched, setIsAlreadyFetched] = useState([]);
 
   async function fetchFeed(feedCategory, feedName) {
-    const res = await fetch(`http://localhost:5000/api/${feedCategory}/${feedName}`);
+    const res = await fetch(`https://rssflex.qweit.com/api/${feedCategory}/${feedName}`);
     const json = await res.json();
     setFeed(json);
   }

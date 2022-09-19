@@ -25,7 +25,7 @@ function Navbar({ setFeedCategory }) {
   };
 
   async function fetchFeedNames() {
-    const res = await fetch('http://localhost:5000/api/feedcategories');
+    const res = await fetch('https://rssflex.qweit.com/api/feedcategories');
     const feedNames = await res.json();
     setPages(feedNames);
   }

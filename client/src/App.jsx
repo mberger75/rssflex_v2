@@ -9,7 +9,7 @@ function App() {
 
   async function fetchFeedNames(feedCategory) {
     setFeedNames([]);
-    const res = await fetch(`http://localhost:5000/api/feednames/${feedCategory}`);
+    const res = await fetch(`https://rssflex.qweit.com/api/feednames/${feedCategory}`);
     const json = await res.json();
     setFeedNames(json);
   }
