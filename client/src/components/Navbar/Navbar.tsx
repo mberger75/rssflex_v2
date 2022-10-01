@@ -15,11 +15,11 @@ function Navbar({ setFeedCategory }) {
   const [pages, setPages] = useState([]);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = (e: any): void => {
+    setAnchorElNav(e.currentTarget);
   };
 
-  const handleCloseNavMenu = (e) => {
+  const handleCloseNavMenu = (e: any): void => {
     setAnchorElNav(null);
     setFeedCategory(e.target.textContent.toLowerCase());
   };
