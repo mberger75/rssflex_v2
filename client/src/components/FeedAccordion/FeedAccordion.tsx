@@ -27,7 +27,7 @@ function FeedAccordion({ feedCategory, feedName }: IFeedAccordion) {
     setFeed(json);
   }
 
-  function handleChange(panel) {
+  function handleChange(panel): void {
     setExpanded(!expanded);
 
     if (isAlreadyFetched.includes(panel)) return;

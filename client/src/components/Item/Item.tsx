@@ -1,26 +1,18 @@
+import { useState } from 'react';
+
 import './Item.css';
 
-function itemSeen(e) {
-  const seenClass = 'article-seen';
-
-  if (!e.currentTarget.classList.contains(seenClass)) {
-    return e.currentTarget.classList.add(seenClass);
-  }
-}
-
-function parseDate(pubDate) {
+function parseDate(pubDate: string): string {
   if (String(new Date(pubDate)) !== 'Invalid Date') {
     return 'Le ' + new Date(pubDate).toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
-  } else {
-    return false;
   }
 }
 
-function parseCategory(cat) {
+function parseCategory(cat: string): string {
   return cat && typeof cat[0] === 'string' && cat[0];
 }
 
-function parseContent(content) {
+function parseContent(content: string): string {
   return content
     .substring(0, 300)
     .replace(/&#8217;|&#39;/g, `'`)
@@ -32,12 +24,27 @@ function parseContent(content) {
     .replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, '');
 }
 
-function Item({ feedItem }) {
+type IFeedItem = {
+  title: string;
+  categories: string;
+  link: string;
+  pubDate: string;
+  content: string;
+};
+
+type IPropsFeedItem = {
+  feedItem: IFeedItem;
+};
+
+function Item({ feedItem }: IPropsFeedItem) {
+  const [itemSeen, setItemSeen] = useState(false);
   const { title, categories, link, pubDate, content } = feedItem;
   const category = parseCategory(categories);
 
+  const seenClass = itemSeen ? 'article-seen' : '';
+
   return (
-    <article key={link} className='article' onClick={(e) => itemSeen(e)}>
+    <article key={link} className={`article ${seenClass}`} onClick={() => setItemSeen(!itemSeen)}>
       <div className='content'>
         <a
           className='content-main'
