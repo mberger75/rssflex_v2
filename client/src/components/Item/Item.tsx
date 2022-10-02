@@ -5,10 +5,11 @@ import { IFeedItem, IPropsFeedItem } from '../../types';
 import './Item.css';
 
 function parseDate(pubDate: string): string {
-  if (String(new Date(pubDate)) !== 'Invalid Date') {
-    return new Date(pubDate).toLocaleString();
+  if (String(new Date(pubDate)) === 'Invalid Date') {
+    return 'Cannot find date';
   }
-  return 'Cannot find date';
+
+  return new Date(pubDate).toLocaleString();
 }
 
 function parseCategory(cat: string[]): string {
