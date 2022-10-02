@@ -11,7 +11,11 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-function Navbar({ setFeedCategory }) {
+type IPropsNavbar = {
+  setFeedCategory: Function;
+};
+
+function Navbar({ setFeedCategory }: IPropsNavbar) {
   const [pages, setPages] = useState([]);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
