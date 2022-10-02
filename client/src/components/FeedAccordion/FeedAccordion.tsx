@@ -8,33 +8,29 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Item from '../Item';
+import { IFeedItem, IFeed, IFeedAccordion } from '../../types';
 
 import './FeedAccordion.css';
 
-type IFeedAccordion = {
-  feedCategory: String;
-  feedName: String;
-};
-
 function FeedAccordion({ feedCategory, feedName }: IFeedAccordion) {
-  const [feed, setFeed] = useState(null);
-  const [expanded, setExpanded] = useState(false);
-  const [isAlreadyFetched, setIsAlreadyFetched] = useState([]);
+  const [feed, setFeed] = useState<IFeed | null>(null);
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const [isAlreadyFetched, setIsAlreadyFetched] = useState<string[]>([]);
 
-  async function fetchFeed(feedCategory, feedName) {
+  async function fetchFeed(feedCategory: string, feedName: string) {
     const res = await fetch(`https://rssflex.qweit.com/api/${feedCategory}/${feedName}`);
     const json = await res.json();
     setFeed(json);
   }
 
-  function handleChange(panel): void {
+  function handleChange(feedName: string): void {
     setExpanded(!expanded);
 
-    if (isAlreadyFetched.includes(panel)) return;
+    if (isAlreadyFetched.includes(feedName)) return;
 
-    fetchFeed(feedCategory, panel);
+    fetchFeed(feedCategory, feedName);
 
-    setIsAlreadyFetched([...isAlreadyFetched, panel]);
+    setIsAlreadyFetched([...isAlreadyFetched, feedName]);
   }
 
   return (
@@ -51,7 +47,9 @@ function FeedAccordion({ feedCategory, feedName }: IFeedAccordion) {
           {feed === null ? (
             <CircularProgress />
           ) : (
-            feed.items.map((feedItem, idx) => <Item key={idx} feedItem={feedItem} />)
+            feed.items.map((feedItem: IFeedItem, idx: number) => (
+              <Item key={idx} feedItem={feedItem} />
+            ))
           )}
         </AccordionDetails>
       </Accordion>
