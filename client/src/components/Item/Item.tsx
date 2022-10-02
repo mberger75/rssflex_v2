@@ -1,18 +1,29 @@
 import { useState } from 'react';
 
+import { IFeedItem, IPropsFeedItem } from '../../types';
+
 import './Item.css';
 
 function parseDate(pubDate: string): string {
   if (String(new Date(pubDate)) !== 'Invalid Date') {
-    return 'Le ' + new Date(pubDate).toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
+    return new Date(pubDate).toLocaleString();
   }
+  return 'Cannot find date';
 }
 
-function parseCategory(cat: string): string {
-  return cat && typeof cat[0] === 'string' && cat[0];
+function parseCategory(cat: string[]): string {
+  if (!cat || cat === null || typeof cat[0] !== 'string') {
+    return 'Category not found';
+  }
+
+  return cat[0];
 }
 
 function parseContent(content: string): string {
+  if (content === null || content === '') {
+    return 'Cannot find content';
+  }
+
   return content
     .substring(0, 300)
     .replace(/&#8217;|&#39;/g, `'`)
@@ -24,24 +35,13 @@ function parseContent(content: string): string {
     .replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, '');
 }
 
-type IFeedItem = {
-  title: string;
-  categories: string;
-  link: string;
-  pubDate: string;
-  content: string;
-};
-
-type IPropsFeedItem = {
-  feedItem: IFeedItem;
-};
-
 function Item({ feedItem }: IPropsFeedItem) {
-  const [itemSeen, setItemSeen] = useState(false);
-  const { title, categories, link, pubDate, content } = feedItem;
-  const category = parseCategory(categories);
+  const [itemSeen, setItemSeen] = useState<boolean>(false);
+  const { title, categories, link, pubDate, content }: IFeedItem = feedItem;
 
-  const seenClass = itemSeen ? 'article-seen' : '';
+  const category: string = parseCategory(categories);
+
+  const seenClass: string = itemSeen ? 'article-seen' : '';
 
   return (
     <article key={link} className={`article ${seenClass}`} onClick={() => setItemSeen(!itemSeen)}>
