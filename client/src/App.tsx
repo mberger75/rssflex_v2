@@ -4,8 +4,8 @@ import Navbar from './components/Navbar';
 import FeedAccordion from './components/FeedAccordion';
 
 function App() {
-  const [feedCategory, setFeedCategory] = useState('dev');
-  const [feedNames, setFeedNames] = useState([]);
+  const [feedCategory, setFeedCategory] = useState<string>('dev');
+  const [feedNames, setFeedNames] = useState<string[]>([]);
 
   async function fetchFeedNames(feedCategory: string): Promise<void> {
     setFeedNames([]);
@@ -24,7 +24,7 @@ function App() {
       {feedNames.length <= 0 ? (
         <h1 className='loader'>Loading {feedCategory} feeds...</h1>
       ) : (
-        feedNames.map((feedName, idx) => (
+        feedNames.map((feedName: string, idx: number) => (
           <FeedAccordion key={idx} feedCategory={feedCategory} feedName={feedName} />
         ))
       )}
