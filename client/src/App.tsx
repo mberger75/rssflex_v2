@@ -7,7 +7,7 @@ function App() {
   const [feedCategory, setFeedCategory] = useState('dev');
   const [feedNames, setFeedNames] = useState([]);
 
-  async function fetchFeedNames(feedCategory) {
+  async function fetchFeedNames(feedCategory: string): Promise<void> {
     setFeedNames([]);
     const res = await fetch(`https://rssflex.qweit.com/api/feednames/${feedCategory}`);
     const json = await res.json();
