@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { IFeedItem, IPropsFeedItem } from '../../types';
+import { FeedItem, FeedItemProps } from '../../types';
 
 import './Item.css';
 
@@ -36,9 +36,9 @@ function parseContent(content: string): string {
     .replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, '');
 }
 
-function Item({ feedItem }: IPropsFeedItem) {
+function Item({ feedItem }: FeedItemProps) {
   const [itemSeen, setItemSeen] = useState<boolean>(false);
-  const { title, categories, link, pubDate, content }: IFeedItem = feedItem;
+  const { title, categories, link, pubDate, content }: FeedItem = feedItem;
 
   const category: string = parseCategory(categories);
 

@@ -11,11 +11,11 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-type IPropsNavbar = {
+type NavbarProps = {
   setFeedCategory: Function;
 };
 
-function Navbar({ setFeedCategory }: IPropsNavbar) {
+function Navbar({ setFeedCategory }: NavbarProps) {
   const [pages, setPages] = useState([]);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -29,7 +29,7 @@ function Navbar({ setFeedCategory }: IPropsNavbar) {
   };
 
   async function fetchFeedNames() {
-    const res = await fetch('https://rssflex.qweit.com/api/feedcategories');
+    const res = await fetch('http://localhost:5000/api/feedCategories');
     const feedNames = await res.json();
     setPages(feedNames);
   }

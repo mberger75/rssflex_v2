@@ -7,18 +7,19 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 
+import { Feed, FeedItem, FeedAccordionProps } from '../../types';
+
 import Item from '../Item';
-import { IFeedItem, IFeed, IFeedAccordion } from '../../types';
 
 import './FeedAccordion.css';
 
-function FeedAccordion({ feedCategory, feedName }: IFeedAccordion) {
-  const [feed, setFeed] = useState<IFeed | null>(null);
+function FeedAccordion({ feedCategory, feedName }: FeedAccordionProps) {
+  const [feed, setFeed] = useState<Feed | null>(null);
   const [expanded, setExpanded] = useState<boolean>(false);
   const [isAlreadyFetched, setIsAlreadyFetched] = useState<string[]>([]);
 
   async function fetchFeed(feedCategory: string, feedName: string) {
-    const res = await fetch(`https://rssflex.qweit.com/api/${feedCategory}/${feedName}`);
+    const res = await fetch(`http://localhost:5000/api/${feedCategory}/${feedName}`);
     const json = await res.json();
     setFeed(json);
   }
@@ -47,7 +48,7 @@ function FeedAccordion({ feedCategory, feedName }: IFeedAccordion) {
           {feed === null ? (
             <CircularProgress />
           ) : (
-            feed.items.map((feedItem: IFeedItem, idx: number) => (
+            feed.items.map((feedItem: FeedItem, idx: number) => (
               <Item key={idx} feedItem={feedItem} />
             ))
           )}

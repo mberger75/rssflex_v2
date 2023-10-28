@@ -1,4 +1,4 @@
-export type IFeedItem = {
+export type FeedItem = {
   title: string;
   categories: string[];
   link: string;
@@ -6,15 +6,15 @@ export type IFeedItem = {
   content: string;
 };
 
-export type IPropsFeedItem = {
-  feedItem: IFeedItem;
+export type FeedItemProps = {
+  feedItem: FeedItem;
 };
 
-export type IFeedAccordion = {
+export type FeedAccordionProps = {
   feedCategory: string;
   feedName: string;
 };
 
-export type IFeed = {
-  items: IFeedItem[];
+export type Feed = {
+  items: FeedItem[];
 };
